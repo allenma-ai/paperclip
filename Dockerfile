@@ -53,5 +53,4 @@ ENV NODE_ENV=production \
 
 EXPOSE 3100
 
-USER node
-CMD ["node", "--import", "./server/node_modules/tsx/dist/loader.mjs", "server/dist/index.js"]
+CMD ["sh", "-lc", "mkdir -p /paperclip/instances/default && chown -R node:node /paperclip && exec su node -s /bin/sh -c 'node --import ./server/node_modules/tsx/dist/loader.mjs server/dist/index.js'"]
